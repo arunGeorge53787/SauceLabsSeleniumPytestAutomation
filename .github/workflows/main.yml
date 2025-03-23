@@ -27,14 +27,20 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Run tests
+      - name: Run Tests with Pytest
         run: |
-          pytest --html=report.html --self-contained-html
+          mkdir -p Test_reports
+          REPORT_PATH="Test_reports/test_report_$(date +"%Y-%m-%d_%H-%M-%S").html"
+          echo "Saving report to: $REPORT_PATH"
+          pytest --html=$REPORT_PATH --self-contained-html
+
+      - name: Debug - List Report Directory
+        run: ls -al Test_reports
 
       - name: Upload Test Report
         uses: actions/upload-artifact@v4
         with:
           name: pytest-report
-          path: Test_reports/*.html
+          path: ${{ github.workspace }}/Test_reports/*.html
 
 
