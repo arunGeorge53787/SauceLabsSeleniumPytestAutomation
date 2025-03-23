@@ -1,0 +1,2 @@
+source sl_env/bin/activate ---to activate the virtualenv
+deactivate ---to deactivate the virtualenv
