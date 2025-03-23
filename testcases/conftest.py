@@ -85,3 +85,21 @@ def setup_driver():
     logout(wait)
 
     driver.quit()
+
+
+@pytest.hookimpl(tryfirst=True, hookwrapper=True)
+def pytest_runtest_makereport(item, call):
+    """Capture test results and attach screenshots to reports."""
+    outcome = yield  # Wait for test execution to finish
+    report = outcome.get_result()  # Get final report result
+
+    if report.when == "call":
+    #if report.when == "call" and report.failed:
+        screenshot_name = getattr(pytest, "screenshot_name", None)
+        ssDir=os.path.abspath('Screenshots')
+        screenshot_path=os.path.join(ssDir,screenshot_name)
+        print(f"screenshot_path: {screenshot_path}")
+        if screenshot_path:
+            extra = getattr(report, "extras", [])
+            extra.append(extras.image(screenshot_path))  # Attach screenshot
+            report.extras = extra

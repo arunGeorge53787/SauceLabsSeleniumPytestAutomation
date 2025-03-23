@@ -142,7 +142,7 @@ class Test_dashboardPage:
         pageLogoTitle=self.visibilityOfEltByXpath(xpath_pageLogo)
         if pageLogoTitle is not None:
             try:
-                assert pageLogoTitle.text==pageTitle+'1'
+                assert pageLogoTitle.text==pageTitle
                 ssName = saveSS(self.driver, 'test_dashboardPageTitle')
                 pytest.screenshot_name = ssName
             except AssertionError as e:
@@ -465,8 +465,17 @@ class Test_dashboardPage:
         title='Verify that bike light is available in the cart.'
         bikeLightImg=self.presOfEltByXpath(xpath_bikeLightImg)
         if bikeLightImg is not None:
-            assert bikeLightImg and bikeLightImg.get_attribute("alt")=="Sauce Labs Bike Light"
+            try:
+                assert bikeLightImg and bikeLightImg.get_attribute("alt")=="Sauce Labs Bike Light"
+                ssName = saveSS(self.driver, 'test_bikeLightImg')
+                pytest.screenshot_name = ssName
+            except AssertionError as e:
+                ssName = saveSS(self.driver, 'test_bikeLightImg')
+                pytest.screenshot_name = ssName
+                raise
         else:
+            ssName = saveSS(self.driver, 'test_bikeLightImg')
+            pytest.screenshot_name = ssName
             pytest.fail("bikeLightImg is not found")
 
     def test_bikeLightName(self):
@@ -475,8 +484,17 @@ class Test_dashboardPage:
         bikeLightName=self.presOfEltByXpath(xpath_bikeLightName)
         if bikeLightName is not None:
             bikeLightName=bikeLightName.text
-            assert bikeLightName=="Sauce Labs Bike Light"
+            try:
+                assert bikeLightName=="Sauce Labs Bike Light"
+                ssName = saveSS(self.driver, 'test_bikeLightName')
+                pytest.screenshot_name = ssName
+            except AssertionError as e:
+                ssName = saveSS(self.driver, 'test_bikeLightName')
+                pytest.screenshot_name = ssName
+                raise
         else:
+            ssName = saveSS(self.driver, 'test_bikeLightName')
+            pytest.screenshot_name = ssName
             pytest.fail("bikeLightName is not found")
     def test_bikeLightPrice(self):
         global bikeLightPrice
@@ -484,16 +502,34 @@ class Test_dashboardPage:
         bikeLightPrice=self.presOfEltByXpath(xpath_bikeLightPrice)
         if bikeLightPrice is not None:
             bikeLightPrice=bikeLightPrice.text
-            assert bikeLightPrice=="$9.99"
+            try:
+                assert bikeLightPrice=="$9.99"
+                ssName = saveSS(self.driver, 'test_bikeLightPrice')
+                pytest.screenshot_name = ssName
+            except AssertionError as e:
+                ssName = saveSS(self.driver, 'test_bikeLightPrice')
+                pytest.screenshot_name = ssName
+                raise
         else:
+            ssName = saveSS(self.driver, 'test_bikeLightPrice')
+            pytest.screenshot_name = ssName
             pytest.fail("bikeLightPrice is not found")
 
     def test_bikeLightAddToCartBtn(self):
         title='Verify that the "Add to cart" button for the bike light is present and clickable.'
         bikeLightAddToCartBtn=self.clickabilityOfEltByXpath(xpath_bikeLightAddToCart)
         if bikeLightAddToCartBtn is not None:
-            assert bikeLightAddToCartBtn.is_displayed() and bikeLightAddToCartBtn.is_enabled()
+            try:
+                assert bikeLightAddToCartBtn.is_displayed() and bikeLightAddToCartBtn.is_enabled()
+                ssName = saveSS(self.driver, 'test_bikeLightAddToCartBtn')
+                pytest.screenshot_name = ssName
+            except AssertionError as e:
+                ssName = saveSS(self.driver, 'test_bikeLightAddToCartBtn')
+                pytest.screenshot_name = ssName
+                raise
         else:
+            ssName = saveSS(self.driver, 'test_bikeLightAddToCartBtn')
+            pytest.screenshot_name = ssName
             pytest.fail("bikeLightAddToCartBtn is not found")
 
     def test_bikeLightAddToCartFunc(self):
@@ -509,25 +545,47 @@ class Test_dashboardPage:
                 removeBtnLabel=removeBtn.text
                 cartItemsCount=self.visibilityOfEltByXpath(xpath_cartBadge)
                 if cartItemsCount is not None:
-                    assert removeBtnLabel=='Remove' and cartItemsCount.text==str(n)
-                    newItem=dict(
-                        name=bikeLightName,
-                        price=bikeLightPrice
-                    )
-                    addedItems.append(newItem)
+                    try:
+                        assert removeBtnLabel=='Remove' and cartItemsCount.text==str(n)
+                        ssName = saveSS(self.driver, 'test_bikeLightAddToCartFunc')
+                        pytest.screenshot_name = ssName
+                        newItem=dict(
+                            name=bikeLightName,
+                            price=bikeLightPrice
+                        )
+                        addedItems.append(newItem)
+                    except AssertionError as e:
+                        ssName = saveSS(self.driver, 'test_bikeLightAddToCartFunc')
+                        pytest.screenshot_name = ssName
+                        raise
                 else:
+                    ssName = saveSS(self.driver, 'test_bikeLightAddToCartFunc')
+                    pytest.screenshot_name = ssName
                     pytest.fail("cartItemsCount is not found")
             else:
+                ssName = saveSS(self.driver, 'test_bikeLightAddToCartFunc')
+                pytest.screenshot_name = ssName
                 pytest.fail("removeBtn is not found")
         else:
+            ssName = saveSS(self.driver, 'test_bikeLightAddToCartFunc')
+            pytest.screenshot_name = ssName
             pytest.fail("bikeLightAddToCartBtn is not found")
 
     def test_tShirtImg(self):
         title='Verify that T-Shirt is available in the cart.'
         tShirtImg=self.presOfEltByXpath(xpath_tShirtImg)
         if tShirtImg is not None:
-            assert tShirtImg and tShirtImg.get_attribute("alt")=="Sauce Labs Bolt T-Shirt"
+            try:
+                assert tShirtImg and tShirtImg.get_attribute("alt")=="Sauce Labs Bolt T-Shirt"
+                ssName = saveSS(self.driver, 'test_tShirtImg')
+                pytest.screenshot_name = ssName
+            except AssertionError as e:
+                ssName = saveSS(self.driver, 'test_tShirtImg')
+                pytest.screenshot_name = ssName
+                raise
         else:
+            ssName = saveSS(self.driver, 'test_tShirtImg')
+            pytest.screenshot_name = ssName
             pytest.fail("tShirtImg is not found")
 
     def test_tShirtName(self):
@@ -536,8 +594,17 @@ class Test_dashboardPage:
         tShirtName=self.presOfEltByXpath(xpath_tShirtName)
         if tShirtName is not None:
             tShirtName=tShirtName.text
-            assert tShirtName=="Sauce Labs Bolt T-Shirt"
+            try:
+                assert tShirtName=="Sauce Labs Bolt T-Shirt"
+                ssName = saveSS(self.driver, 'test_tShirtName')
+                pytest.screenshot_name = ssName
+            except AssertionError as e:
+                ssName = saveSS(self.driver, 'test_tShirtName')
+                pytest.screenshot_name = ssName
+                raise
         else:
+            ssName = saveSS(self.driver, 'test_tShirtName')
+            pytest.screenshot_name = ssName
             pytest.fail("bikeLightName is not found")
     def test_tShirtPrice(self):
         global tShirtPrice
@@ -545,16 +612,34 @@ class Test_dashboardPage:
         tShirtPrice=self.presOfEltByXpath(xpath_tShirtPrice)
         if tShirtPrice is not None:
             tShirtPrice=tShirtPrice.text
-            assert tShirtPrice=="$15.99"
+            try:
+                assert tShirtPrice=="$15.99"
+                ssName = saveSS(self.driver, 'test_tShirtPrice')
+                pytest.screenshot_name = ssName
+            except AssertionError as e:
+                ssName = saveSS(self.driver, 'test_tShirtPrice')
+                pytest.screenshot_name = ssName
+                raise
         else:
+            ssName = saveSS(self.driver, 'test_tShirtPrice')
+            pytest.screenshot_name = ssName
             pytest.fail("tShirtPrice is not found")
 
     def test_tShirtAddToCartBtn(self):
         title='Verify that the "Add to cart" button for the T-Shirt is present and clickable.'
         tShirtAddToCartBtn=self.clickabilityOfEltByXpath(xpath_tShirtAddToCart)
         if tShirtAddToCartBtn is not None:
-            assert tShirtAddToCartBtn.is_displayed() and tShirtAddToCartBtn.is_enabled()
+            try:
+                assert tShirtAddToCartBtn.is_displayed() and tShirtAddToCartBtn.is_enabled()
+                ssName = saveSS(self.driver, 'test_tShirtAddToCartBtn')
+                pytest.screenshot_name = ssName
+            except AssertionError as e:
+                ssName = saveSS(self.driver, 'test_tShirtAddToCartBtn')
+                pytest.screenshot_name = ssName
+                raise
         else:
+            ssName = saveSS(self.driver, 'test_tShirtAddToCartBtn')
+            pytest.screenshot_name = ssName
             pytest.fail("tShirtAddToCartBtn is not found")
 
     def test_tShirtAddToCartFunc(self):
@@ -570,25 +655,47 @@ class Test_dashboardPage:
                 removeBtnLabel=removeBtn.text
                 cartItemsCount=self.visibilityOfEltByXpath(xpath_cartBadge)
                 if cartItemsCount is not None:
-                    assert removeBtnLabel=='Remove' and cartItemsCount.text==str(n)
-                    newItem=dict(
-                        name=tShirtName,
-                        price=tShirtPrice
-                    )
-                    addedItems.append(newItem)
+                    try:
+                        assert removeBtnLabel=='Remove' and cartItemsCount.text==str(n)
+                        ssName = saveSS(self.driver, 'test_tShirtAddToCartFunc')
+                        pytest.screenshot_name = ssName
+                        newItem=dict(
+                            name=tShirtName,
+                            price=tShirtPrice
+                        )
+                        addedItems.append(newItem)
+                    except AssertionError as e:
+                        ssName = saveSS(self.driver, 'test_tShirtAddToCartFunc')
+                        pytest.screenshot_name = ssName
+                        raise
                 else:
+                    ssName = saveSS(self.driver, 'test_tShirtAddToCartFunc')
+                    pytest.screenshot_name = ssName
                     pytest.fail("cartItemsCount is not found")
             else:
+                ssName = saveSS(self.driver, 'test_tShirtAddToCartFunc')
+                pytest.screenshot_name = ssName
                 pytest.fail("removeBtn is not found")
         else:
+            ssName = saveSS(self.driver, 'test_tShirtAddToCartFunc')
+            pytest.screenshot_name = ssName
             pytest.fail("tShirtAddToCartBtn is not found")
 
     def test_onesieImg(self):
         title='Verify that Onesie is available in the cart.'
         onesieImg=self.presOfEltByXpath(xpath_onesieImg)
         if onesieImg is not None:
-            assert onesieImg and onesieImg.get_attribute("alt")=="Sauce Labs Onesie"
+            try:
+                assert onesieImg and onesieImg.get_attribute("alt")=="Sauce Labs Onesie"
+                ssName = saveSS(self.driver, 'test_onesieImg')
+                pytest.screenshot_name = ssName
+            except AssertionError as e:
+                ssName = saveSS(self.driver, 'test_onesieImg')
+                pytest.screenshot_name = ssName
+                raise
         else:
+            ssName = saveSS(self.driver, 'test_onesieImg')
+            pytest.screenshot_name = ssName
             pytest.fail("onesieImg is not found")
 
     def test_onesieName(self):
@@ -597,8 +704,17 @@ class Test_dashboardPage:
         onesieName=self.presOfEltByXpath(xpath_onesieName)
         if onesieName is not None:
             onesieName=onesieName.text
-            assert onesieName=="Sauce Labs Onesie"
+            try:
+                assert onesieName=="Sauce Labs Onesie"
+                ssName = saveSS(self.driver, 'test_onesieName')
+                pytest.screenshot_name = ssName
+            except AssertionError as e:
+                ssName = saveSS(self.driver, 'test_onesieName')
+                pytest.screenshot_name = ssName
+                raise
         else:
+            ssName = saveSS(self.driver, 'test_onesieName')
+            pytest.screenshot_name = ssName
             pytest.fail("onesieName is not found")
     def test_onesiePrice(self):
         global onesiePrice
@@ -606,16 +722,34 @@ class Test_dashboardPage:
         onesiePrice=self.presOfEltByXpath(xpath_onesiePrice)
         if onesiePrice is not None:
             onesiePrice=onesiePrice.text
-            assert onesiePrice=="$7.99"
+            try:
+                assert onesiePrice=="$7.99"
+                ssName = saveSS(self.driver, 'test_onesiePrice')
+                pytest.screenshot_name = ssName
+            except AssertionError as e:
+                ssName = saveSS(self.driver, 'test_onesiePrice')
+                pytest.screenshot_name = ssName
+                raise
         else:
+            ssName = saveSS(self.driver, 'test_onesiePrice')
+            pytest.screenshot_name = ssName
             pytest.fail("onesiePrice is not found")
 
     def test_onesieAddToCartBtn(self):
         title='Verify that the "Add to cart" button for the Onesie is present and clickable.'
         onesieAddToCartBtn=self.clickabilityOfEltByXpath(xpath_onesieAddToCart)
         if onesieAddToCartBtn is not None:
-            assert onesieAddToCartBtn.is_displayed() and onesieAddToCartBtn.is_enabled()
+            try:
+                assert onesieAddToCartBtn.is_displayed() and onesieAddToCartBtn.is_enabled()
+                ssName = saveSS(self.driver, 'test_onesieAddToCartBtn')
+                pytest.screenshot_name = ssName
+            except AssertionError as e:
+                ssName = saveSS(self.driver, 'test_onesieAddToCartBtn')
+                pytest.screenshot_name = ssName
+                raise
         else:
+            ssName = saveSS(self.driver, 'test_onesieAddToCartBtn')
+            pytest.screenshot_name = ssName
             pytest.fail("onesieAddToCartBtn is not found")
 
     def test_onesieAddToCartFunc(self):
@@ -631,25 +765,47 @@ class Test_dashboardPage:
                 removeBtnLabel=removeBtn.text
                 cartItemsCount=self.visibilityOfEltByXpath(xpath_cartBadge)
                 if cartItemsCount is not None:
-                    assert removeBtnLabel=='Remove' and cartItemsCount.text==str(n)
-                    newItem=dict(
-                        name=onesieName,
-                        price=onesiePrice
-                    )
-                    addedItems.append(newItem)
+                    try:
+                        assert removeBtnLabel=='Remove' and cartItemsCount.text==str(n)
+                        ssName = saveSS(self.driver, 'test_onesieAddToCartFunc')
+                        pytest.screenshot_name = ssName
+                        newItem=dict(
+                            name=onesieName,
+                            price=onesiePrice
+                        )
+                        addedItems.append(newItem)
+                    except AssertionError as e:
+                        ssName = saveSS(self.driver, 'test_onesieAddToCartFunc')
+                        pytest.screenshot_name = ssName
+                        raise
                 else:
+                    ssName = saveSS(self.driver, 'test_onesieAddToCartFunc')
+                    pytest.screenshot_name = ssName
                     pytest.fail("cartItemsCount is not found")
             else:
+                ssName = saveSS(self.driver, 'test_onesieAddToCartFunc')
+                pytest.screenshot_name = ssName
                 pytest.fail("removeBtn is not found")
         else:
+            ssName = saveSS(self.driver, 'test_onesieAddToCartFunc')
+            pytest.screenshot_name = ssName
             pytest.fail("onesieAddToCartBtn is not found")
 
     def test_cartIconEnabled(self):
         title="Verify that cart icon is enabled."
         cartIcon = self.presOfEltByXpath(xpath_cartIcon)
         if cartIcon is not None:
-            assert cartIcon.is_displayed() and cartIcon.is_enabled()
+            try:
+                assert cartIcon.is_displayed() and cartIcon.is_enabled()
+                ssName = saveSS(self.driver, 'test_cartIconEnabled')
+                pytest.screenshot_name = ssName
+            except AssertionError as e:
+                ssName = saveSS(self.driver, 'test_cartIconEnabled')
+                pytest.screenshot_name = ssName
+                raise
         else:
+            ssName = saveSS(self.driver, 'test_cartIconEnabled')
+            pytest.screenshot_name = ssName
             pytest.fail("cartIcon not found")
 
     def test_clickOnCartIconOpensYourCartPage(self):
@@ -659,10 +815,21 @@ class Test_dashboardPage:
             cartIcon.click()
             pageTitle1=self.presOfEltByXpath(xpath_yourCartPageTitle)
             if pageTitle1 is not None:
-                assert pageTitle1.text=="Your Cart"
+                try:
+                    assert pageTitle1.text=="Your Cart"
+                    ssName = saveSS(self.driver, 'test_clickOnCartIconOpensYourCartPage')
+                    pytest.screenshot_name = ssName
+                except AssertionError as e:
+                    ssName = saveSS(self.driver, 'test_clickOnCartIconOpensYourCartPage')
+                    pytest.screenshot_name = ssName
+                    raise
             else:
+                ssName = saveSS(self.driver, 'test_clickOnCartIconOpensYourCartPage')
+                pytest.screenshot_name = ssName
                 pytest.fail("pageTitle1 not found")
         else:
+            ssName = saveSS(self.driver, 'test_clickOnCartIconOpensYourCartPage')
+            pytest.screenshot_name = ssName
             pytest.fail("cartIcon not found")
 
     def test_yourCartPageContainsAllAddedItems(self):
@@ -676,42 +843,84 @@ class Test_dashboardPage:
             if len(nameOfItems)==len(addedItems):
                 for elt in addedItems:
                     assert elt['name'] in nameOfItems
+                ssName = saveSS(self.driver, 'test_yourCartPageContainsAllAddedItems')
+                pytest.screenshot_name = ssName
                 #print(nameOfItems)
             else:
+                ssName = saveSS(self.driver, 'test_yourCartPageContainsAllAddedItems')
+                pytest.screenshot_name = ssName
                 pytest.fail("number of added items and items in your cart page is not equal")
         else:
+            ssName = saveSS(self.driver, 'test_yourCartPageContainsAllAddedItems')
+            pytest.screenshot_name = ssName
             pytest.fail("classItems not found")
 
     def test_priceOfBackPackInCart(self):
         title='Verify that the price of back pack in your cart page is "$29.99"'
         priceOfBackPackInCart=self.presOfEltByXpath(xpath_priceOfBackPackInCart)
         if priceOfBackPackInCart is not None:
-            assert priceOfBackPackInCart.text==backpackProdPrice
+            try:
+                assert priceOfBackPackInCart.text==backpackProdPrice
+                ssName = saveSS(self.driver, 'test_priceOfBackPackInCart')
+                pytest.screenshot_name = ssName
+            except AssertionError as e:
+                ssName = saveSS(self.driver, 'test_priceOfBackPackInCart')
+                pytest.screenshot_name = ssName
+                raise
         else:
+            ssName = saveSS(self.driver, 'test_priceOfBackPackInCart')
+            pytest.screenshot_name = ssName
             pytest.fail("priceOfBackPackInCart not found")
 
     def test_priceOfBikeLightInCart(self):
         title='Verify that the price of bike light in your cart page is "$9.99"'
         priceOfBikeLightInCart=self.presOfEltByXpath(xpath_priceOfBikeLightInCart)
         if priceOfBikeLightInCart is not None:
-            assert priceOfBikeLightInCart.text==bikeLightPrice
+            try:
+                assert priceOfBikeLightInCart.text==bikeLightPrice
+                ssName = saveSS(self.driver, 'test_priceOfBikeLightInCart')
+                pytest.screenshot_name = ssName
+            except AssertionError as e:
+                ssName = saveSS(self.driver, 'test_priceOfBikeLightInCart')
+                pytest.screenshot_name = ssName
+                raise
         else:
+            ssName = saveSS(self.driver, 'test_priceOfBikeLightInCart')
+            pytest.screenshot_name = ssName
             pytest.fail("priceOfBikeLightInCart not found")
 
     def test_priceOfTshirtInCart(self):
         title='Verify that the price of T-Shirt in your cart page is "$15.99"'
         priceOfTshirtInCart=self.presOfEltByXpath(xpath_priceOfTshirtInCart)
         if priceOfTshirtInCart is not None:
-            assert priceOfTshirtInCart.text==tShirtPrice
+            try:
+                assert priceOfTshirtInCart.text==tShirtPrice
+                ssName = saveSS(self.driver, 'test_priceOfTshirtInCart')
+                pytest.screenshot_name = ssName
+            except AssertionError as e:
+                ssName = saveSS(self.driver, 'test_priceOfTshirtInCart')
+                pytest.screenshot_name = ssName
+                raise
         else:
+            ssName = saveSS(self.driver, 'test_priceOfTshirtInCart')
+            pytest.screenshot_name = ssName
             pytest.fail("priceOfTshirtInCart not found")
 
     def test_priceOfOnesieInCart(self):
         title='Verify that the price of Onesie in your cart page is "$7.99"'
         priceOfOnesieInCart=self.presOfEltByXpath(xpath_priceOfOnesieInCart)
         if priceOfOnesieInCart is not None:
-            assert priceOfOnesieInCart.text==onesiePrice
+            try:
+                assert priceOfOnesieInCart.text==onesiePrice
+                ssName = saveSS(self.driver, 'test_priceOfOnesieInCart')
+                pytest.screenshot_name = ssName
+            except AssertionError as e:
+                ssName = saveSS(self.driver, 'test_priceOfOnesieInCart')
+                pytest.screenshot_name = ssName
+                raise
         else:
+            ssName = saveSS(self.driver, 'test_priceOfOnesieInCart')
+            pytest.screenshot_name = ssName
             pytest.fail("priceOfOnesieInCart not found")
 
     def test_clickOnRemoveBtnForTshirtRemovesItFromCart(self):
@@ -727,19 +936,32 @@ class Test_dashboardPage:
                     for itm in classItems:
                         name = itm.text
                         nameOfItems.append(name)
-                    assert tShirtName not in nameOfItems
-                    n=n-1
-                    for i in range(len(addedItems)):
-                        if addedItems[i]['name']==tShirtName:
-                            addedItems.pop(i)
-                            break
-                        else:
-                            pass
+                    try:
+                        assert tShirtName not in nameOfItems
+                        ssName = saveSS(self.driver, 'test_clickOnRemoveBtnForTshirtRemovesItFromCart')
+                        pytest.screenshot_name = ssName
+                        n=n-1
+                        for i in range(len(addedItems)):
+                            if addedItems[i]['name']==tShirtName:
+                                addedItems.pop(i)
+                                break
+                            else:
+                                pass
+                    except AssertionError as e:
+                        ssName = saveSS(self.driver, 'test_clickOnRemoveBtnForTshirtRemovesItFromCart')
+                        pytest.screenshot_name = ssName
+                        raise
                 else:
+                    ssName = saveSS(self.driver, 'test_clickOnRemoveBtnForTshirtRemovesItFromCart')
+                    pytest.screenshot_name = ssName
                     pytest.fail("classItems not found")
             else:
+                ssName = saveSS(self.driver, 'test_clickOnRemoveBtnForTshirtRemovesItFromCart')
+                pytest.screenshot_name = ssName
                 pytest.fail("removeBtn is not displayed or not enabled")
         else:
+            ssName = saveSS(self.driver, 'test_clickOnRemoveBtnForTshirtRemovesItFromCart')
+            pytest.screenshot_name = ssName
             pytest.fail("removeBtn not found")
 
     def test_clickOnContinueShoppingNavigatesToShoppingPage(self):
@@ -750,12 +972,25 @@ class Test_dashboardPage:
                 continueShoppingBtn.click()
                 pageTitle1=self.presOfEltByXpath(xpath_sectionHeading)
                 if pageTitle1 is not None:
-                    assert pageTitle1.text==sectionHeading
+                    try:
+                        assert pageTitle1.text==sectionHeading
+                        ssName = saveSS(self.driver, 'test_clickOnContinueShoppingNavigatesToShoppingPage')
+                        pytest.screenshot_name = ssName
+                    except AssertionError as e:
+                        ssName = saveSS(self.driver, 'test_clickOnContinueShoppingNavigatesToShoppingPage')
+                        pytest.screenshot_name = ssName
+                        raise
                 else:
+                    ssName = saveSS(self.driver, 'test_clickOnContinueShoppingNavigatesToShoppingPage')
+                    pytest.screenshot_name = ssName
                     pytest.fail("pageTitle1 not found")
             else:
+                ssName = saveSS(self.driver, 'test_clickOnContinueShoppingNavigatesToShoppingPage')
+                pytest.screenshot_name = ssName
                 pytest.fail("continueShoppingBtn is not displayed or not enabled")
         else:
+            ssName = saveSS(self.driver, 'test_clickOnContinueShoppingNavigatesToShoppingPage')
+            pytest.screenshot_name = ssName
             pytest.fail("continueShoppingBtn not found")
 
     def test_clickOnRemoveBtnForBikeLightRemovesItFromCart(self):
@@ -771,22 +1006,39 @@ class Test_dashboardPage:
                     if addToCartBtn.is_displayed() and addToCartBtn.is_enabled():
                         cartItemsCount = self.visibilityOfEltByXpath(xpath_cartBadge)
                         if cartItemsCount is not None:
-                            assert addToCartBtn.text=="Add to cart" and cartItemsCount.text==str(n)
-                            for i in range(len(addedItems)):
-                                if addedItems[i]['name'] == bikeLightName:
-                                    addedItems.pop(i)
-                                    break
-                                else:
-                                    pass
+                            try:
+                                assert addToCartBtn.text=="Add to cart" and cartItemsCount.text==str(n)
+                                ssName = saveSS(self.driver, 'test_clickOnRemoveBtnForBikeLightRemovesItFromCart')
+                                pytest.screenshot_name = ssName
+                                for i in range(len(addedItems)):
+                                    if addedItems[i]['name'] == bikeLightName:
+                                        addedItems.pop(i)
+                                        break
+                                    else:
+                                        pass
+                            except AssertionError as e:
+                                ssName = saveSS(self.driver, 'test_clickOnRemoveBtnForBikeLightRemovesItFromCart')
+                                pytest.screenshot_name = ssName
+                                raise
                         else:
+                            ssName = saveSS(self.driver, 'test_clickOnRemoveBtnForBikeLightRemovesItFromCart')
+                            pytest.screenshot_name = ssName
                             pytest.fail("cartItemsCount not found")
                     else:
+                        ssName = saveSS(self.driver, 'test_clickOnRemoveBtnForBikeLightRemovesItFromCart')
+                        pytest.screenshot_name = ssName
                         pytest.fail("addToCartBtn is not displayed or not enabled")
                 else:
+                    ssName = saveSS(self.driver, 'test_clickOnRemoveBtnForBikeLightRemovesItFromCart')
+                    pytest.screenshot_name = ssName
                     pytest.fail("addToCartBtn not found")
             else:
+                ssName = saveSS(self.driver, 'test_clickOnRemoveBtnForBikeLightRemovesItFromCart')
+                pytest.screenshot_name = ssName
                 pytest.fail("removeBtn is not displayed or not enabled")
         else:
+            ssName = saveSS(self.driver, 'test_clickOnRemoveBtnForBikeLightRemovesItFromCart')
+            pytest.screenshot_name = ssName
             pytest.fail("removeBtn not found")
 
     def test_bikeLightIsNotAvailableInYourCart(self):
@@ -801,18 +1053,38 @@ class Test_dashboardPage:
                 for itm in classItems:
                     name = itm.text
                     nameOfItems.append(name)
-                assert bikeLightName not in nameOfItems and len(nameOfItems)==n
+                try:
+                    assert bikeLightName not in nameOfItems and len(nameOfItems)==n
+                    ssName = saveSS(self.driver, 'test_bikeLightIsNotAvailableInYourCart')
+                    pytest.screenshot_name = ssName
+                except AssertionError as e:
+                    ssName = saveSS(self.driver, 'test_bikeLightIsNotAvailableInYourCart')
+                    pytest.screenshot_name = ssName
+                    raise
             else:
+                ssName = saveSS(self.driver, 'test_bikeLightIsNotAvailableInYourCart')
+                pytest.screenshot_name = ssName
                 pytest.fail("classItems not found")
         else:
+            ssName = saveSS(self.driver, 'test_bikeLightIsNotAvailableInYourCart')
+            pytest.screenshot_name = ssName
             pytest.fail("cartIcon not found")
 
     def test_checkoutBtnInYourCartPage(self):
         title='Verify that your cart page has "Checkout" button'
         checkoutBtn=self.presOfEltByXpath(xpath_checkoutBtn)
         if checkoutBtn is not None:
-            assert checkoutBtn.is_displayed() and checkoutBtn.is_enabled() and checkoutBtn.text=="Checkout"
+            try:
+                assert checkoutBtn.is_displayed() and checkoutBtn.is_enabled() and checkoutBtn.text=="Checkout"
+                ssName = saveSS(self.driver, 'test_checkoutBtnInYourCartPage')
+                pytest.screenshot_name = ssName
+            except AssertionError as e:
+                ssName = saveSS(self.driver, 'test_checkoutBtnInYourCartPage')
+                pytest.screenshot_name = ssName
+                raise
         else:
+            ssName = saveSS(self.driver, 'test_checkoutBtnInYourCartPage')
+            pytest.screenshot_name = ssName
             pytest.fail("checkoutBtn not found")
 
     def test_clickOnCheckoutBtnNavigatesToYourInfoPage(self):
@@ -821,8 +1093,17 @@ class Test_dashboardPage:
         checkoutBtn.click()
         checkoutYourInfoPageTitle=self.presOfEltByXpath(xpath_sectionHeading)
         if checkoutYourInfoPageTitle is not None:
-            assert checkoutYourInfoPageTitle.text=="Checkout: Your Information"
+            try:
+                assert checkoutYourInfoPageTitle.text=="Checkout: Your Information"
+                ssName = saveSS(self.driver, 'test_clickOnCheckoutBtnNavigatesToYourInfoPage')
+                pytest.screenshot_name = ssName
+            except AssertionError as e:
+                ssName = saveSS(self.driver, 'test_clickOnCheckoutBtnNavigatesToYourInfoPage')
+                pytest.screenshot_name = ssName
+                raise
         else:
+            ssName = saveSS(self.driver, 'test_clickOnCheckoutBtnNavigatesToYourInfoPage')
+            pytest.screenshot_name = ssName
             pytest.fail("checkoutYourInfoPageTitle not found")
 
     def test_yourInfoPageHasFirstNameField(self):
