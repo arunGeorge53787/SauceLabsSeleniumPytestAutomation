@@ -142,7 +142,7 @@ class Test_dashboardPage:
         pageLogoTitle=self.visibilityOfEltByXpath(xpath_pageLogo)
         if pageLogoTitle is not None:
             try:
-                assert pageLogoTitle.text==pageTitle
+                assert pageLogoTitle.text==pageTitle+'1'
                 ssName = saveSS(self.driver, 'test_dashboardPageTitle')
                 pytest.screenshot_name = ssName
             except AssertionError as e:
