@@ -47,7 +47,7 @@ def setup_driver_without_login_and_logout():
         service = get_service()
 
     options = Options()
-    #options.add_argument("--headless")  # Run in headless mode for CI/CD
+    options.add_argument("--headless")  # Run in headless mode for CI/CD
     options.add_argument("--no-sandbox")
     options.add_argument("--disable-dev-shm-usage")
     options.add_argument("--disable-gpu")
@@ -69,7 +69,7 @@ def setup_driver():
         service = get_service()
 
     options = Options()
-    #options.add_argument("--headless")  # Required for GitHub Actions
+    options.add_argument("--headless")  # Required for GitHub Actions
     options.add_argument("--no-sandbox")
     options.add_argument("--disable-dev-shm-usage")
     options.add_argument("--disable-gpu")
