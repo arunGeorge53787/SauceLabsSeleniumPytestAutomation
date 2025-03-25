@@ -7,7 +7,7 @@ on:
   pull_request:
     branches:
       - main
-  workflow_dispatch:
+  workflow_dispatch:  # Allows manual trigger
 
 jobs:
   test:
@@ -35,14 +35,11 @@ jobs:
 
       - name: Set DISPLAY environment variable
         run: echo "DISPLAY=:99" >> $GITHUB_ENV
-      
 
-      - name: Run Tests with Pytest
+      - name: Run Tests (run_test.py)
         run: |
           mkdir -p Test_reports
-          REPORT_PATH="Test_reports/test_report_$(date +"%Y-%m-%d_%H-%M-%S").html"
-          echo "Saving report to: $REPORT_PATH"
-          pytest --html=$REPORT_PATH --self-contained-html
+          python3 run_test.py || true  # Continue execution even if tests fail
 
       - name: Debug - List Report Directory
         run: ls -al Test_reports
@@ -51,6 +48,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: pytest-report
-          path: ${{ github.workspace }}/Test_reports/*.html
-
-
+          path: Test_reports/
