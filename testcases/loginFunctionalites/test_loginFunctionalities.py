@@ -1,6 +1,6 @@
-import time
+#import time
 import pytest
-from base import loginLogout
+from base import loginLogout, saveScreenShots
 from selenium.common.exceptions import TimeoutException
 from data.locators import loginPage, dashboard
 from testcases import getElts
@@ -8,6 +8,7 @@ from testcases import getElts
 login=loginLogout.login
 logout=loginLogout.logout
 eltLocator=getElts.Get_Elts
+saveSS=saveScreenShots.saveScreenshot
 
 # xpaths and ids of elements in login page
 xpath=loginPage.xpaths
@@ -43,7 +44,7 @@ warningText_lockedOutUser=text['lockedOutUser']
 xpath=dashboard.xpaths
 xpath_title=xpath['title']
 
-@pytest.mark.skip
+#@pytest.mark.skip
 class Test_loginPageElementsAndLoginFunctionality:
     driver=None
     wait=None
@@ -69,63 +70,133 @@ class Test_loginPageElementsAndLoginFunctionality:
         request.cls.clickabilityOfEltById=locatorClass.clickabilityOfEltById
     
     def test_logo_in_login_page(self):
-        title='verify that login page displays company logo' 
+        title='verify that login page displays company logo'
+        #pytest.title = title
         logo=self.visibilityOfEltByXpath(xpath_logo)
         if logo is not None:
-            assert logo.is_displayed()==True
+            try:
+                assert logo.is_displayed()==True
+                ssName = saveSS(self.driver, 'test_logo_in_login_page')
+                pytest.screenshot_name = ssName
+            except AssertionError as e:
+                ssName = saveSS(self.driver, 'test_logo_in_login_page')
+                pytest.screenshot_name = ssName
+                raise
         else:
+            ssName = saveSS(self.driver, 'test_logo_in_login_page')
+            pytest.screenshot_name = ssName
             pytest.fail("logo not found")
     
     def test_uNameField(self):
         title='verify that the login page has a username field'
+        #pytest.title = title
         uNameField=self.presOfEltById(id_uNameField)
         if uNameField is not None:
-            assert uNameField.is_displayed() and uNameField.is_enabled() == True
+            try:
+                assert uNameField.is_displayed() and uNameField.is_enabled() == True
+                ssName = saveSS(self.driver, 'test_uNameField')
+                pytest.screenshot_name = ssName
+            except AssertionError as e:
+                ssName = saveSS(self.driver, 'test_uNameField')
+                pytest.screenshot_name = ssName
+                raise
         else:
+            ssName = saveSS(self.driver, 'test_uNameField')
+            pytest.screenshot_name = ssName
             pytest.fail("uNameField not found")
         
     def test_uNameFieldPlaceholder(self):
         title='verify that the username field has the placeholder username'
+        #pytest.title = title
         uNameField=self.presOfEltById(id_uNameField)
         if uNameField is not None:
-            assert uNameField.get_attribute("placeholder") == 'Username'
+            try:
+                assert uNameField.get_attribute("placeholder") == 'Username'
+                ssName = saveSS(self.driver, 'test_uNameFieldPlaceholder')
+                pytest.screenshot_name = ssName
+            except AssertionError as e:
+                ssName = saveSS(self.driver, 'test_uNameFieldPlaceholder')
+                pytest.screenshot_name = ssName
         else:
+            ssName = saveSS(self.driver, 'test_uNameFieldPlaceholder')
+            pytest.screenshot_name = ssName
             pytest.fail("uNameField not found")
     
     def test_pWordField(self):
         title='verify that the login page has a password field'
+        #pytest.title = title
         pWordField=self.presOfEltById(id_pWordField)
         if pWordField is not None:
-            assert pWordField.is_displayed() and pWordField.is_enabled() == True
+            try:
+                assert pWordField.is_displayed() and pWordField.is_enabled() == True
+                ssName = saveSS(self.driver, 'test_pWordField')
+                pytest.screenshot_name = ssName
+            except AssertionError as e:
+                ssName = saveSS(self.driver, 'test_pWordField')
+                pytest.screenshot_name = ssName
+                raise
         else:
+            ssName = saveSS(self.driver, 'test_pWordField')
+            pytest.screenshot_name = ssName
             pytest.fail("pWordField not found")
         
     def test_pWordFieldPlaceholder(self):
         title='verify that the password field has the placeholder password'
+        #pytest.title = title
         pWordField=self.presOfEltById(id_pWordField)
         if pWordField is not None:
-            assert pWordField.get_attribute("placeholder") == 'Password'
+            try:
+                assert pWordField.get_attribute("placeholder") == 'Password'
+                ssName = saveSS(self.driver, 'test_pWordFieldPlaceholder')
+                pytest.screenshot_name = ssName
+            except AssertionError as e:
+                ssName = saveSS(self.driver, 'test_pWordFieldPlaceholder')
+                pytest.screenshot_name = ssName
+                raise
         else:
+            ssName = saveSS(self.driver, 'test_pWordFieldPlaceholder')
+            pytest.screenshot_name = ssName
             pytest.fail("pWordField not found")
         
     def test_presenceOfLoginBtn(self):
         title='verify that the login page has a login button'
+        #pytest.title = title
         loginBtn=self.presOfEltById(id_loginBtn)
         if loginBtn is not None:
-            assert loginBtn.is_displayed() and loginBtn.is_enabled() == True
+            try:
+                assert loginBtn.is_displayed() and loginBtn.is_enabled() == True
+                ssName = saveSS(self.driver, 'test_presenceOfLoginBtn')
+                pytest.screenshot_name = ssName
+            except AssertionError as e:
+                ssName = saveSS(self.driver, 'test_presenceOfLoginBtn')
+                pytest.screenshot_name = ssName
+                raise
         else:
+            ssName = saveSS(self.driver, 'test_presenceOfLoginBtn')
+            pytest.screenshot_name = ssName
             pytest.fail("loginBtn not found")
     
     def test_nameOfLoginBtn(self):
         title='verify that the login button has the name Login'
+        #pytest.title = title
         loginBtn=self.presOfEltById(id_loginBtn)
         if loginBtn is not None:
-            assert loginBtn.get_attribute("value")=='Login'
+            try:
+                assert loginBtn.get_attribute("value")=='Login'
+                ssName = saveSS(self.driver, 'test_nameOfLoginBtn')
+                pytest.screenshot_name = ssName
+            except AssertionError as e:
+                ssName = saveSS(self.driver, 'test_nameOfLoginBtn')
+                pytest.screenshot_name = ssName
+                raise
         else:
+            ssName = saveSS(self.driver, 'test_nameOfLoginBtn')
+            pytest.screenshot_name = ssName
             pytest.fail("loginBtn not found")
 
     def test_loginWithoutCredentials(self):
         title='verify that the user is not logged in without any values in the username and password fields and user is provided with a warning that username is required'
+        #pytest.title = title
         loginBtn = self.presOfEltById(id_loginBtn)
         if loginBtn is not None:
             loginBtn.click()
@@ -135,14 +206,26 @@ class Test_loginPageElementsAndLoginFunctionality:
             except TimeoutException:
                 pageTitle=self.visibilityOfEltByXpath(xpath_title)
                 if pageTitle.is_displayed():
+                    ssName = saveSS(self.driver, 'test_loginWithoutCredentials')
+                    pytest.screenshot_name = ssName
                     logout(self.wait)
                     pytest.fail("login success")
-            assert warningMsg==warningText_noUserNameNoPassword
+            try:
+                assert warningMsg==warningText_noUserNameNoPassword
+                ssName = saveSS(self.driver, 'test_loginWithoutCredentials')
+                pytest.screenshot_name = ssName
+            except AssertionError as e:
+                ssName = saveSS(self.driver, 'test_loginWithoutCredentials')
+                pytest.screenshot_name = ssName
+                raise
         else:
+            ssName = saveSS(self.driver, 'test_loginWithoutCredentials')
+            pytest.screenshot_name = ssName
             pytest.fail("loginBtn not found")
     
     def test_test_loginWithoutUsername(self):
         title='verify that the user is unable to login without a username'
+        #pytest.title = title
         pWordField=self.presOfEltById(id_pWordField)
         if pWordField is not None:
             pWordField.send_keys(pWord)
@@ -155,14 +238,26 @@ class Test_loginPageElementsAndLoginFunctionality:
                 except TimeoutException:
                     pageTitle=self.visibilityOfEltByXpath(xpath_title)
                     if pageTitle.is_displayed():
+                        ssName = saveSS(self.driver, 'test_test_loginWithoutUsername')
+                        pytest.screenshot_name = ssName
                         logout(self.wait)
                         pytest.fail("login success")
-                assert warningMsg==warningText_noUsername
+                try:
+                    assert warningMsg==warningText_noUsername
+                    ssName = saveSS(self.driver, 'test_test_loginWithoutUsername')
+                    pytest.screenshot_name = ssName
+                except AssertionError as e:
+                    ssName = saveSS(self.driver, 'test_test_loginWithoutUsername')
+                    pytest.screenshot_name = ssName
+                    raise
             else:
+                ssName = saveSS(self.driver, 'test_test_loginWithoutUsername')
+                pytest.screenshot_name = ssName
                 pytest.fail("loginBtn not found")
         
     def test_loginWithoutPassword(self):
         title='verify that the user is unable to login without password'
+        #pytest.title = title
         self.driver.refresh()
         uNameField=self.presOfEltById(id_uNameField)
         if uNameField is not None:
@@ -176,16 +271,30 @@ class Test_loginPageElementsAndLoginFunctionality:
                 except TimeoutException:
                     pageTitle=self.visibilityOfEltByXpath(xpath_title)
                     if pageTitle.is_displayed():
+                        ssName = saveSS(self.driver, 'test_loginWithoutPassword')
+                        pytest.screenshot_name = ssName
                         logout(self.wait)
                         pytest.fail("login success")
-                assert warningMsg==warningText_noPassword
+                try:
+                    assert warningMsg==warningText_noPassword
+                    ssName = saveSS(self.driver, 'test_loginWithoutPassword')
+                    pytest.screenshot_name = ssName
+                except AssertionError as e:
+                    ssName = saveSS(self.driver, 'test_loginWithoutPassword')
+                    pytest.screenshot_name = ssName
+                    raise
             else:
+                ssName = saveSS(self.driver, 'test_loginWithoutPassword')
+                pytest.screenshot_name = ssName
                 pytest.fail("loginBtn not found")
         else:
+            ssName = saveSS(self.driver, 'test_loginWithoutPassword')
+            pytest.screenshot_name = ssName
             pytest.fail("uNameField not found")
         
     def test_loginWithInvalidUsername(self):
         title='verify that the user is unable to login with invalid username'
+        #pytest.title = title
         self.driver.refresh()
         uNameField=self.presOfEltById(id_uNameField)
         if uNameField is not None:
@@ -202,6 +311,8 @@ class Test_loginPageElementsAndLoginFunctionality:
                     except TimeoutException:
                         pageTitle=self.presOfEltByXpath(xpath_title)
                         if pageTitle.is_displayed():
+                            ssName = saveSS(self.driver, 'test_loginWithInvalidUsername')
+                            pytest.screenshot_name = ssName
                             logout(self.wait)
                             pytest.fail("login success")
                     assert warningMsg==warningText_incorrectUsername
@@ -214,6 +325,7 @@ class Test_loginPageElementsAndLoginFunctionality:
        
     def test_loginWithInvalidPassword(self):
         title='verify that the user is unable to login with invalid password'
+        #pytest.title = title
         self.driver.refresh()
         uNameField = self.presOfEltById(id_uNameField)
         if uNameField is not None:
@@ -230,18 +342,34 @@ class Test_loginPageElementsAndLoginFunctionality:
                     except TimeoutException:
                         pageTitle = self.presOfEltByXpath(xpath_title)
                         if pageTitle.is_displayed():
+                            ssName = saveSS(self.driver, 'test_loginWithInvalidPassword')
+                            pytest.screenshot_name = ssName
                             logout(self.wait)
                             pytest.fail("login success")
-                    assert warningMsg==warningText_incorrectPassword
+                    try:
+                        assert warningMsg==warningText_incorrectPassword
+                        ssName = saveSS(self.driver, 'test_loginWithInvalidPassword')
+                        pytest.screenshot_name = ssName
+                    except AssertionError as e:
+                        ssName = saveSS(self.driver, 'test_loginWithInvalidPassword')
+                        pytest.screenshot_name = ssName
+                        raise
                 else:
+                    ssName = saveSS(self.driver, 'test_loginWithInvalidPassword')
+                    pytest.screenshot_name = ssName
                     pytest.fail("loginBtn not found")
             else:
+                ssName = saveSS(self.driver, 'test_loginWithInvalidPassword')
+                pytest.screenshot_name = ssName
                 pytest.fail("pWordField not found")
         else:
+            ssName = saveSS(self.driver, 'test_loginWithInvalidPassword')
+            pytest.screenshot_name = ssName
             pytest.fail("uNameField not found")
         
     def test_loginWithInvalidUsernameAndPassword(self):
         title='verify that the user is unable to login with invalid username and password'
+        #pytest.title = title
         self.driver.refresh()
         uNameField = self.presOfEltById(id_uNameField)
         if uNameField is not None:
@@ -258,18 +386,34 @@ class Test_loginPageElementsAndLoginFunctionality:
                     except TimeoutException:
                         pageTitle = self.presOfEltByXpath(xpath_title)
                         if pageTitle.is_displayed():
+                            ssName = saveSS(self.driver, 'test_loginWithInvalidUsernameAndPassword')
+                            pytest.screenshot_name = ssName
                             logout(self.wait)
                             pytest.fail("login success")
-                    assert warningMsg==warningText_incorrectPassword
+                    try:
+                        assert warningMsg==warningText_incorrectPassword
+                        ssName = saveSS(self.driver, 'test_loginWithInvalidUsernameAndPassword')
+                        pytest.screenshot_name = ssName
+                    except AssertionError as e:
+                        ssName = saveSS(self.driver, 'test_loginWithInvalidUsernameAndPassword')
+                        pytest.screenshot_name = ssName
+                        raise
                 else:
+                    ssName = saveSS(self.driver, 'test_loginWithInvalidUsernameAndPassword')
+                    pytest.screenshot_name = ssName
                     pytest.fail("loginBtn not found")
             else:
+                ssName = saveSS(self.driver, 'test_loginWithInvalidUsernameAndPassword')
+                pytest.screenshot_name = ssName
                 pytest.fail("pWordField not found")
         else:
+            ssName = saveSS(self.driver, 'test_loginWithInvalidUsernameAndPassword')
+            pytest.screenshot_name = ssName
             pytest.fail("uNameField not found")
         
     def test_loginWithValidCredentials(self):
         title='verify that the user is able to login with a valid credentials'
+        #pytest.title = title
         self.driver.refresh()
         uNameField = self.presOfEltById(id_uNameField)
         if uNameField is not None:
@@ -283,19 +427,35 @@ class Test_loginPageElementsAndLoginFunctionality:
                     try:
                         pageTitle=self.visibilityOfEltByXpath(xpath_title)
                         if pageTitle is not None:
-                            assert pageTitle.text=='Products'
-                            logout(self.wait)
+                            try:
+                                assert pageTitle.text=='Products'
+                                ssName = saveSS(self.driver, 'test_loginWithValidCredentials')
+                                pytest.screenshot_name = ssName
+                                logout(self.wait)
+                            except AssertionError as e:
+                                ssName = saveSS(self.driver, 'test_loginWithValidCredentials')
+                                pytest.screenshot_name = ssName
+                                raise
                     except TimeoutException:
-                        pytest.fail('login was failed')
+                        ssName = saveSS(self.driver, 'test_loginWithValidCredentials')
+                        pytest.screenshot_name = ssName
+                        raise
                 else:
+                    ssName = saveSS(self.driver, 'test_loginWithValidCredentials')
+                    pytest.screenshot_name = ssName
                     pytest.fail("loginBtn not found")
             else:
+                ssName = saveSS(self.driver, 'test_loginWithValidCredentials')
+                pytest.screenshot_name = ssName
                 pytest.fail("pWordField not found")
         else:
+            ssName = saveSS(self.driver, 'test_loginWithValidCredentials')
+            pytest.screenshot_name = ssName
             pytest.fail("uNameField not found")
             
     def test_blockedUserUnableToLogin(self):
         title='verify that the blocked user is unable to login'
+        #pytest.title = title
         self.driver.refresh()
         uNameField = self.presOfEltById(id_uNameField)
         if uNameField is not None:
@@ -312,18 +472,34 @@ class Test_loginPageElementsAndLoginFunctionality:
                     except TimeoutException:
                         pageTitle = self.presOfEltByXpath(xpath_title)
                         if pageTitle.is_displayed():
+                            ssName = saveSS(self.driver, 'test_blockedUserUnableToLogin')
+                            pytest.screenshot_name = ssName
                             logout(self.wait)
-                            pytest.fail("login success")
-                    assert warningMsg==warningText_lockedOutUser
+                            raise
+                    try:
+                        assert warningMsg==warningText_lockedOutUser
+                        ssName = saveSS(self.driver, 'test_blockedUserUnableToLogin')
+                        pytest.screenshot_name = ssName
+                    except AssertionError as e:
+                        ssName = saveSS(self.driver, 'test_blockedUserUnableToLogin')
+                        pytest.screenshot_name = ssName
+                        raise
                 else:
+                    ssName = saveSS(self.driver, 'test_blockedUserUnableToLogin')
+                    pytest.screenshot_name = ssName
                     pytest.fail("loginBtn not found")
             else:
+                ssName = saveSS(self.driver, 'test_blockedUserUnableToLogin')
+                pytest.screenshot_name = ssName
                 pytest.fail("pWordField not found")
         else:
+            ssName = saveSS(self.driver, 'test_blockedUserUnableToLogin')
+            pytest.screenshot_name = ssName
             pytest.fail("uNameField not found")
         
     def test_uNameFieldCaseSensitive(self):
         title='verify that the username field is case sensitive'
+        #pytest.title = title
         self.driver.refresh()
         uNameField = self.presOfEltById(id_uNameField)
         if uNameField is not None:
@@ -340,18 +516,34 @@ class Test_loginPageElementsAndLoginFunctionality:
                     except TimeoutException:
                         pageTitle = self.presOfEltByXpath(xpath_title)
                         if pageTitle.is_displayed():
+                            ssName = saveSS(self.driver, 'test_uNameFieldCaseSensitive')
+                            pytest.screenshot_name = ssName
                             logout(self.wait)
                             pytest.fail("login success")
-                    assert warningMsg==warningText_incorrectUsername
+                    try:
+                        assert warningMsg==warningText_incorrectUsername
+                        ssName = saveSS(self.driver, 'test_uNameFieldCaseSensitive')
+                        pytest.screenshot_name = ssName
+                    except AssertionError as e:
+                        ssName = saveSS(self.driver, 'test_uNameFieldCaseSensitive')
+                        pytest.screenshot_name = ssName
+                        raise
                 else:
+                    ssName = saveSS(self.driver, 'test_uNameFieldCaseSensitive')
+                    pytest.screenshot_name = ssName
                     pytest.fail("loginBtn not found")
             else:
+                ssName = saveSS(self.driver, 'test_uNameFieldCaseSensitive')
+                pytest.screenshot_name = ssName
                 pytest.fail("pWordField not found")
         else:
+            ssName = saveSS(self.driver, 'test_uNameFieldCaseSensitive')
+            pytest.screenshot_name = ssName
             pytest.fail("uNameField not found")
         
     def test_pWordFieldCaseSensitive(self):
         title='verify that the password field is case sensitive'
+        #pytest.title = title
         self.driver.refresh()
         uNameField = self.presOfEltById(id_uNameField)
         if uNameField is not None:
@@ -368,14 +560,29 @@ class Test_loginPageElementsAndLoginFunctionality:
                     except TimeoutException:
                         pageTitle = self.presOfEltByXpath(xpath_title)
                         if pageTitle.is_displayed():
+                            ssName = saveSS(self.driver, 'test_pWordFieldCaseSensitive')
+                            pytest.screenshot_name = ssName
                             logout(self.wait)
                             pytest.fail("login success")
-                    assert warningMsg == warningText_incorrectPassword
+                    try:
+                        assert warningMsg == warningText_incorrectPassword
+                        ssName = saveSS(self.driver, 'test_pWordFieldCaseSensitive')
+                        pytest.screenshot_name = ssName
+                    except AssertionError as e:
+                        ssName = saveSS(self.driver, 'test_pWordFieldCaseSensitive')
+                        pytest.screenshot_name = ssName
+                        raise
                 else:
+                    ssName = saveSS(self.driver, 'test_pWordFieldCaseSensitive')
+                    pytest.screenshot_name = ssName
                     pytest.fail("loginBtn not found")
             else:
+                ssName = saveSS(self.driver, 'test_pWordFieldCaseSensitive')
+                pytest.screenshot_name = ssName
                 pytest.fail("pWordField not found")
         else:
+            ssName = saveSS(self.driver, 'test_pWordFieldCaseSensitive')
+            pytest.screenshot_name = ssName
             pytest.fail("uNameField not found")
         
         

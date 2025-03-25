@@ -93,13 +93,21 @@ def pytest_runtest_makereport(item, call):
     outcome = yield  # Wait for test execution to finish
     report = outcome.get_result()  # Get final report result
 
+    # if report.when == "call" and report.failed:
     if report.when == "call":
-    #if report.when == "call" and report.failed:
+        extra = getattr(report, "extras", [])
+        # title=getattr(pytest,"title","No title available")
+        # print(f"Test Title: {title}")
+        # extra.append(extras.text(f"Test Title: {title}"))
         screenshot_name = getattr(pytest, "screenshot_name", None)
         ssDir=os.path.abspath('Screenshots')
         screenshot_path=os.path.join(ssDir,screenshot_name)
-        print(f"screenshot_path: {screenshot_path}")
+        #print(f"screenshot_path: {screenshot_path}")
         if screenshot_path:
-            extra = getattr(report, "extras", [])
             extra.append(extras.image(screenshot_path))  # Attach screenshot
-            report.extras = extra
+        report.extras = extra
+
+# @pytest.fixture(autouse=True)
+# def reset_pytest_title():
+#     """Ensure pytest.title is reset for each test."""
+#     pytest.title = "No title available"

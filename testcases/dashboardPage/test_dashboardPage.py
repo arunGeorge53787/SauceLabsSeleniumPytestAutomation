@@ -117,7 +117,7 @@ def is_alphabetically_descending(string_list):
             return False
     return True
 
-
+#@pytest.mark.skip
 class Test_dashboardPage:
     driver=None
     wait=None
@@ -139,6 +139,7 @@ class Test_dashboardPage:
 
     def test_dashboardPageTitle(self):
         title='Verify that the page header displays "Swag Labs".'
+        #pytest.title = title
         pageLogoTitle=self.visibilityOfEltByXpath(xpath_pageLogo)
         if pageLogoTitle is not None:
             try:
@@ -156,6 +157,7 @@ class Test_dashboardPage:
             pytest.fail("The element pageLogoTitle not found")
     def test_dashboardPageTitleBrowserTab(self):
         title ='Verify that the page title in the browser tab is "Swag Labs".'
+        #pytest.title = title
         try:
             assert self.driver.title==pageTitle
             ssName = saveSS(self.driver, 'test_dashboardPageTitleBrowserTab')
@@ -167,6 +169,7 @@ class Test_dashboardPage:
 
     def test_sectionHeading(self):
         title='Verify that the section heading displays "Products".'
+        #pytest.title = title
         sectionHeading1=self.visibilityOfEltByXpath(xpath_sectionHeading)
         if sectionHeading1 is not None:
             try:
@@ -184,6 +187,7 @@ class Test_dashboardPage:
     
     def test_sortOrders(self):
         title='Verify that the  sort orders in the dropdown are "Name (A to Z)", "Name (Z to A)", "Price (low to high)", "Price (high to low)".'
+        #pytest.title = title
         sortDropdownString=self.visibilityOfEltByXpath(xpath_sortContainer)
         if sortDropdownString is not None:
             sortDropdownString=sortDropdownString.text
@@ -203,6 +207,7 @@ class Test_dashboardPage:
             pytest.fail("sortDropdownString not found")
     def test_defaultSortOrder(self):
         title='Verify that the default sort order in the dropdown is "Name (A to Z)".'
+        #pytest.title = title
         sortDropdownString=self.visibilityOfEltByXpath(xpath_sortContainer)
         if sortDropdownString is not None:
             sortDropdownString=sortDropdownString.text
@@ -228,6 +233,7 @@ class Test_dashboardPage:
 
     def test_nameDescOrderSort(self):
         title='Verify that selecting "Name (Z to A)" reorders the products alphabetically in descending order.'
+        #pytest.title = title
         sortDropdown=self.visibilityOfEltByXpath(xpath_sortContainer)
         if sortDropdown is not None:
             sortDropdown.click()
@@ -265,6 +271,7 @@ class Test_dashboardPage:
 
     def test_priceDescOrder(self):
         title='Verify that selecting "Price (low to high)" reorders the products by price from lowest to highest.'
+        #pytest.title = title
         sortDropdown=self.visibilityOfEltByXpath(xpath_sortContainer)
         if sortDropdown is not None:
             sortDropdown.click()
@@ -308,6 +315,7 @@ class Test_dashboardPage:
 
     def test_priceAsceOrder(self):
         title='Verify that selecting "Price (high to low)" reorders the products by price from highest to lowest.'
+        #pytest.title = title
         sortDropdown=self.visibilityOfEltByXpath(xpath_sortContainer)
         if sortDropdown is not None:
             sortDropdown.click()
@@ -351,6 +359,7 @@ class Test_dashboardPage:
 
     def test_backpackImg(self):
         title='Verify that the backpack image is displayed.'
+        #pytest.title = title
         self.driver.refresh()
         sleep(1)
         backpackImg=self.presOfEltByXpath(xpath_backpackImg)
@@ -371,6 +380,7 @@ class Test_dashboardPage:
     def test_backpackProdName(self):
         global backpackProdName
         title='Verify that the backpack name is "Sauce Labs Backpack".'
+        #pytest.title = title
         backpackProdName=self.presOfEltByXpath(xpath_backpackProdName)
         if backpackProdName is not None:
             backpackProdName=backpackProdName.text
@@ -390,6 +400,7 @@ class Test_dashboardPage:
     def test_backpackProdPrice(self):
         global backpackProdPrice
         title='Verify that the backpack price is "$29.99".'
+        #pytest.title = title
         backpackProdPrice=self.presOfEltByXpath(xpath_backpackProdPrice)
         if backpackProdPrice is not None:
             backpackProdPrice=backpackProdPrice.text
@@ -407,6 +418,7 @@ class Test_dashboardPage:
             pytest.fail("backpackProdPrice is not found")
     def test_backpackAddToCartBtn(self):
         title='Verify that the "Add to cart" button for the backpack is present and clickable.'
+        #pytest.title = title
         backpackAddToCartBtn=self.clickabilityOfEltByXpath(xpath_backpackAddToCartBtn)
         if backpackAddToCartBtn is not None:
             try:
@@ -425,6 +437,7 @@ class Test_dashboardPage:
     def test_backpackAddToCartFunc(self):
         global n
         title = 'Verify that clicking "Add to cart" adds the backpack to the shopping cart.'
+        #pytest.title = title
         backpackAddToCartBtn=self.clickabilityOfEltByXpath(xpath_backpackAddToCartBtn)
         if backpackAddToCartBtn is not None:
             backpackAddToCartBtn.click()
@@ -463,6 +476,7 @@ class Test_dashboardPage:
 
     def test_bikeLightImg(self):
         title='Verify that bike light is available in the cart.'
+        #pytest.title = title
         bikeLightImg=self.presOfEltByXpath(xpath_bikeLightImg)
         if bikeLightImg is not None:
             try:
@@ -481,6 +495,7 @@ class Test_dashboardPage:
     def test_bikeLightName(self):
         global bikeLightName
         title='Verify that the bike light name is "Sauce Labs Bike Light".'
+        #pytest.title = title
         bikeLightName=self.presOfEltByXpath(xpath_bikeLightName)
         if bikeLightName is not None:
             bikeLightName=bikeLightName.text
@@ -499,6 +514,7 @@ class Test_dashboardPage:
     def test_bikeLightPrice(self):
         global bikeLightPrice
         title='Verify that the bike light price is "$9.99".'
+        #pytest.title = title
         bikeLightPrice=self.presOfEltByXpath(xpath_bikeLightPrice)
         if bikeLightPrice is not None:
             bikeLightPrice=bikeLightPrice.text
@@ -517,6 +533,7 @@ class Test_dashboardPage:
 
     def test_bikeLightAddToCartBtn(self):
         title='Verify that the "Add to cart" button for the bike light is present and clickable.'
+        #pytest.title = title
         bikeLightAddToCartBtn=self.clickabilityOfEltByXpath(xpath_bikeLightAddToCart)
         if bikeLightAddToCartBtn is not None:
             try:
@@ -535,6 +552,7 @@ class Test_dashboardPage:
     def test_bikeLightAddToCartFunc(self):
         global n
         title = 'Verify that clicking "Add to cart" adds the bike light to the shopping cart.'
+        #pytest.title = title
         bikeLightAddToCartBtn=self.clickabilityOfEltByXpath(xpath_bikeLightAddToCartBtn)
         if bikeLightAddToCartBtn is not None:
             bikeLightAddToCartBtn.click()
@@ -573,6 +591,7 @@ class Test_dashboardPage:
 
     def test_tShirtImg(self):
         title='Verify that T-Shirt is available in the cart.'
+        #pytest.title = title
         tShirtImg=self.presOfEltByXpath(xpath_tShirtImg)
         if tShirtImg is not None:
             try:
@@ -591,6 +610,7 @@ class Test_dashboardPage:
     def test_tShirtName(self):
         global tShirtName
         title='Verify that the T-Shirt name is "Sauce Labs Bolt T-Shirt".'
+        #pytest.title = title
         tShirtName=self.presOfEltByXpath(xpath_tShirtName)
         if tShirtName is not None:
             tShirtName=tShirtName.text
@@ -609,6 +629,7 @@ class Test_dashboardPage:
     def test_tShirtPrice(self):
         global tShirtPrice
         title='Verify that the T-Shirt price is "$15.99".'
+        #pytest.title = title
         tShirtPrice=self.presOfEltByXpath(xpath_tShirtPrice)
         if tShirtPrice is not None:
             tShirtPrice=tShirtPrice.text
@@ -627,6 +648,7 @@ class Test_dashboardPage:
 
     def test_tShirtAddToCartBtn(self):
         title='Verify that the "Add to cart" button for the T-Shirt is present and clickable.'
+        #pytest.title = title
         tShirtAddToCartBtn=self.clickabilityOfEltByXpath(xpath_tShirtAddToCart)
         if tShirtAddToCartBtn is not None:
             try:
@@ -645,6 +667,7 @@ class Test_dashboardPage:
     def test_tShirtAddToCartFunc(self):
         global n
         title = 'Verify that clicking "Add to cart" adds the T-Shirt to the shopping cart.'
+        #pytest.title = title
         tShirtAddToCartBtn=self.clickabilityOfEltByXpath(xpath_tShirtAddToCart)
         if tShirtAddToCartBtn is not None:
             tShirtAddToCartBtn.click()
@@ -683,6 +706,7 @@ class Test_dashboardPage:
 
     def test_onesieImg(self):
         title='Verify that Onesie is available in the cart.'
+        #pytest.title = title
         onesieImg=self.presOfEltByXpath(xpath_onesieImg)
         if onesieImg is not None:
             try:
@@ -701,6 +725,7 @@ class Test_dashboardPage:
     def test_onesieName(self):
         global onesieName
         title='Verify that the Onesie name is "Sauce Labs Bolt T-Shirt".'
+        #pytest.title = title
         onesieName=self.presOfEltByXpath(xpath_onesieName)
         if onesieName is not None:
             onesieName=onesieName.text
@@ -719,6 +744,7 @@ class Test_dashboardPage:
     def test_onesiePrice(self):
         global onesiePrice
         title='Verify that the Onesie price is "$7.99".'
+        #pytest.title = title
         onesiePrice=self.presOfEltByXpath(xpath_onesiePrice)
         if onesiePrice is not None:
             onesiePrice=onesiePrice.text
@@ -737,6 +763,7 @@ class Test_dashboardPage:
 
     def test_onesieAddToCartBtn(self):
         title='Verify that the "Add to cart" button for the Onesie is present and clickable.'
+        #pytest.title = title
         onesieAddToCartBtn=self.clickabilityOfEltByXpath(xpath_onesieAddToCart)
         if onesieAddToCartBtn is not None:
             try:
@@ -755,6 +782,7 @@ class Test_dashboardPage:
     def test_onesieAddToCartFunc(self):
         global n
         title = 'Verify that clicking "Add to cart" adds the Onesie to the shopping cart.'
+        #pytest.title = title
         onesieAddToCartBtn=self.clickabilityOfEltByXpath(xpath_onesieAddToCart)
         if onesieAddToCartBtn is not None:
             onesieAddToCartBtn.click()
@@ -793,6 +821,7 @@ class Test_dashboardPage:
 
     def test_cartIconEnabled(self):
         title="Verify that cart icon is enabled."
+        #pytest.title = title
         cartIcon = self.presOfEltByXpath(xpath_cartIcon)
         if cartIcon is not None:
             try:
@@ -810,6 +839,7 @@ class Test_dashboardPage:
 
     def test_clickOnCartIconOpensYourCartPage(self):
         title="Verify that clicking on the cart icon opens the your cart page."
+        #pytest.title = title
         cartIcon=self.presOfEltByXpath(xpath_cartIcon)
         if cartIcon is not None:
             cartIcon.click()
@@ -834,6 +864,7 @@ class Test_dashboardPage:
 
     def test_yourCartPageContainsAllAddedItems(self):
         title="Verify that the your cart page contains all added items"
+        #pytest.title = title
         classItems=self.presOfAllEltsByClass(yourCartItemNamesClass)
         if classItems is not None:
             nameOfItems=[]
@@ -857,6 +888,7 @@ class Test_dashboardPage:
 
     def test_priceOfBackPackInCart(self):
         title='Verify that the price of back pack in your cart page is "$29.99"'
+        #pytest.title = title
         priceOfBackPackInCart=self.presOfEltByXpath(xpath_priceOfBackPackInCart)
         if priceOfBackPackInCart is not None:
             try:
@@ -874,6 +906,7 @@ class Test_dashboardPage:
 
     def test_priceOfBikeLightInCart(self):
         title='Verify that the price of bike light in your cart page is "$9.99"'
+        #pytest.title = title
         priceOfBikeLightInCart=self.presOfEltByXpath(xpath_priceOfBikeLightInCart)
         if priceOfBikeLightInCart is not None:
             try:
@@ -891,6 +924,7 @@ class Test_dashboardPage:
 
     def test_priceOfTshirtInCart(self):
         title='Verify that the price of T-Shirt in your cart page is "$15.99"'
+        #pytest.title = title
         priceOfTshirtInCart=self.presOfEltByXpath(xpath_priceOfTshirtInCart)
         if priceOfTshirtInCart is not None:
             try:
@@ -908,6 +942,7 @@ class Test_dashboardPage:
 
     def test_priceOfOnesieInCart(self):
         title='Verify that the price of Onesie in your cart page is "$7.99"'
+        #pytest.title = title
         priceOfOnesieInCart=self.presOfEltByXpath(xpath_priceOfOnesieInCart)
         if priceOfOnesieInCart is not None:
             try:
@@ -926,6 +961,7 @@ class Test_dashboardPage:
     def test_clickOnRemoveBtnForTshirtRemovesItFromCart(self):
         global n
         title='Verify that clicking on the remove button for the T-shirt removes it from your cart list.'
+        #pytest.title = title
         removeBtn=self.presOfEltByXpath(xpath_tShirtRemoveBtn)
         if removeBtn is not None:
             if removeBtn.is_displayed() and removeBtn.is_enabled():
@@ -966,6 +1002,7 @@ class Test_dashboardPage:
 
     def test_clickOnContinueShoppingNavigatesToShoppingPage(self):
         title='Verify that clicking "Continue Shopping" button on your cart page navigates to shopping page.'
+        #pytest.title = title
         continueShoppingBtn=self.presOfEltByXpath(xpath_continueShoppingBtn)
         if continueShoppingBtn is not None:
             if continueShoppingBtn.is_displayed() and continueShoppingBtn.is_enabled():
@@ -995,6 +1032,7 @@ class Test_dashboardPage:
 
     def test_clickOnRemoveBtnForBikeLightRemovesItFromCart(self):
         title='Verify that clicking on the remove button for the Bike Light removes it from your cart list.'
+        #pytest.title = title
         global n
         removeBtn = self.presOfEltByXpath(xpath_bikeLightRemoveBtn)
         if removeBtn is not None:
@@ -1044,6 +1082,7 @@ class Test_dashboardPage:
     def test_bikeLightIsNotAvailableInYourCart(self):
         global n
         title='Verify that Bike Light is not available in your cart list'
+        #pytest.title = title
         cartIcon = self.presOfEltByXpath(xpath_cartIcon)
         if cartIcon is not None:
             cartIcon.click()
@@ -1072,6 +1111,7 @@ class Test_dashboardPage:
 
     def test_checkoutBtnInYourCartPage(self):
         title='Verify that your cart page has "Checkout" button'
+        #pytest.title = title
         checkoutBtn=self.presOfEltByXpath(xpath_checkoutBtn)
         if checkoutBtn is not None:
             try:
@@ -1089,6 +1129,7 @@ class Test_dashboardPage:
 
     def test_clickOnCheckoutBtnNavigatesToYourInfoPage(self):
         title='Verify that clicking on Checkout button navigates to "Your information" page'
+        #pytest.title = title
         checkoutBtn = self.presOfEltByXpath(xpath_checkoutBtn)
         checkoutBtn.click()
         checkoutYourInfoPageTitle=self.presOfEltByXpath(xpath_sectionHeading)
@@ -1108,66 +1149,137 @@ class Test_dashboardPage:
 
     def test_yourInfoPageHasFirstNameField(self):
         title='Verify that the your information page has first name field with placeholder text "First Name"'
+        #pytest.title = title
         firstNameField=self.presOfEltByXpath(xpath_firstNameField)
         if firstNameField is not None:
-            assert firstNameField.is_enabled() and firstNameField.get_attribute("placeholder")=="First Name"
+            try:
+                assert firstNameField.is_enabled() and firstNameField.get_attribute("placeholder")=="First Name"
+                ssName = saveSS(self.driver, 'test_yourInfoPageHasFirstNameField')
+                pytest.screenshot_name = ssName
+            except AssertionError as e:
+                ssName = saveSS(self.driver, 'test_yourInfoPageHasFirstNameField')
+                pytest.screenshot_name = ssName
+                raise
         else:
+            ssName = saveSS(self.driver, 'test_yourInfoPageHasFirstNameField')
+            pytest.screenshot_name = ssName
             pytest.fail("firstNameField not found")
 
     def test_yourInfoPageHasLastNameField(self):
         title='Verify that the your information page has last name field with placeholder text "Last Name"'
+        #pytest.title = title
         lastNameField=self.presOfEltByXpath(xpath_lastNameField)
         if lastNameField is not None:
-            assert lastNameField.is_enabled() and lastNameField.get_attribute("placeholder")=="Last Name"
+            try:
+                assert lastNameField.is_enabled() and lastNameField.get_attribute("placeholder")=="Last Name"
+                ssName = saveSS(self.driver, 'test_yourInfoPageHasLastNameField')
+                pytest.screenshot_name = ssName
+            except AssertionError as e:
+                ssName = saveSS(self.driver, 'test_yourInfoPageHasLastNameField')
+                pytest.screenshot_name = ssName
+                raise
         else:
+            ssName = saveSS(self.driver, 'test_yourInfoPageHasLastNameField')
+            pytest.screenshot_name = ssName
             pytest.fail("lastNameField not found")
 
     def test_yourInfoPageHasZipCodeField(self):
         title='Verify that the your information page has zip code field with placeholder text "Zip/Postal Code"'
+        #pytest.title = title
         zipCodeField=self.presOfEltByXpath(xpath_zipCodeField)
         if zipCodeField is not None:
-            assert zipCodeField.is_enabled() and zipCodeField.get_attribute("placeholder")=="Zip/Postal Code"
+            try:
+                assert zipCodeField.is_enabled() and zipCodeField.get_attribute("placeholder")=="Zip/Postal Code"
+                ssName = saveSS(self.driver, 'test_yourInfoPageHasZipCodeField')
+                pytest.screenshot_name = ssName
+            except AssertionError as e:
+                ssName = saveSS(self.driver, 'test_yourInfoPageHasZipCodeField')
+                pytest.screenshot_name = ssName
+                raise
         else:
+            ssName = saveSS(self.driver, 'test_yourInfoPageHasZipCodeField')
+            pytest.screenshot_name = ssName
             pytest.fail("zipCodeField not found")
 
     def test_yourInfoPageHasCancelBtn(self):
         title='Verify that the your information page has "Cancel" button'
+        #pytest.title = title
         cancelBtn=self.presOfEltByXpath(xpath_cancelBtn)
         if cancelBtn is not None:
-            assert cancelBtn.is_displayed() and cancelBtn.is_enabled() and cancelBtn.text=='Cancel'
+            try:
+                assert cancelBtn.is_displayed() and cancelBtn.is_enabled() and cancelBtn.text=='Cancel'
+                ssName = saveSS(self.driver, 'test_yourInfoPageHasCancelBtn')
+                pytest.screenshot_name = ssName
+            except AssertionError as e:
+                ssName = saveSS(self.driver, 'test_yourInfoPageHasCancelBtn')
+                pytest.screenshot_name = ssName
+                raise
         else:
+            ssName = saveSS(self.driver, 'test_yourInfoPageHasCancelBtn')
+            pytest.screenshot_name = ssName
             pytest.fail("cancelBtn not found")
     def test_clickingOnCancelBtnNavigatesToYourCartPage(self):
         title='Verify that clicking on the "Cancel" button navigates to your cart page'
+        #pytest.title = title
         cancelBtn = self.presOfEltByXpath(xpath_cancelBtn)
         cancelBtn.click()
         pageTitle1=self.presOfEltByXpath(xpath_sectionHeading)
         if pageTitle1 is not None:
-            assert pageTitle1.text=="Your Cart"
+            try:
+                assert pageTitle1.text=="Your Cart"
+                ssName = saveSS(self.driver, 'test_clickingOnCancelBtnNavigatesToYourCartPage')
+                pytest.screenshot_name = ssName
+            except AssertionError as e:
+                ssName = saveSS(self.driver, 'test_clickingOnCancelBtnNavigatesToYourCartPage')
+                pytest.screenshot_name = ssName
+                raise
         else:
+            ssName = saveSS(self.driver, 'test_clickingOnCancelBtnNavigatesToYourCartPage')
+            pytest.screenshot_name = ssName
             pytest.fail("Your Cart Page not found")
     def test_yourInfoPageHasContinueBtn(self):
         title='Verify that the your information page has "Continue" button'
+        #pytest.title = title
         checkoutBtn = self.presOfEltByXpath(xpath_checkoutBtn)
         checkoutBtn.click()
         continueBtn = self.presOfEltByXpath(xpath_continueBtn)
         if continueBtn is not None:
-            assert continueBtn.is_displayed() and continueBtn.is_enabled() and continueBtn.get_attribute("value") == 'Continue'
+            try:
+                assert continueBtn.is_displayed() and continueBtn.is_enabled() and continueBtn.get_attribute("value") == 'Continue'
+                ssName = saveSS(self.driver, 'test_yourInfoPageHasContinueBtn')
+                pytest.screenshot_name = ssName
+            except AssertionError as e:
+                ssName = saveSS(self.driver, 'test_yourInfoPageHasContinueBtn')
+                pytest.screenshot_name = ssName
+                raise
         else:
+            ssName = saveSS(self.driver, 'test_yourInfoPageHasContinueBtn')
+            pytest.screenshot_name = ssName
             pytest.fail("continueBtn not found")
 
     def test_clickingOnContinueBtnWithEmptyFieldsProvideError(self):
         title='Verify that clicking on the "Continue" button with empty first name, last name and zip code fields provide error messages'
+        #pytest.title = title
         continueBtn = self.presOfEltByXpath(xpath_continueBtn)
         continueBtn.click()
         errorMsgFirstName=self.presOfEltByXpath(xpath_errorMsgFirstName)
         if errorMsgFirstName is not None:
-            assert errorMsgFirstName.text=="Error: First Name is required"
+            try:
+                assert errorMsgFirstName.text=="Error: First Name is required"
+                ssName = saveSS(self.driver, 'test_clickingOnContinueBtnWithEmptyFieldsProvideError')
+                pytest.screenshot_name = ssName
+            except AssertionError as e:
+                ssName = saveSS(self.driver, 'test_clickingOnContinueBtnWithEmptyFieldsProvideError')
+                pytest.screenshot_name = ssName
+                raise
         else:
+            ssName = saveSS(self.driver, 'test_clickingOnContinueBtnWithEmptyFieldsProvideError')
+            pytest.screenshot_name = ssName
             pytest.fail("errorMsgFirstName not found")
 
     def test_firstNameFieldIsMandatory(self):
         title='Verify that the first name field is mandatory'
+        #pytest.title = title
         self.driver.refresh()
         sleep(2)
         lastNameField = self.presOfEltByXpath(xpath_lastNameField).send_keys('Wick')
@@ -1175,12 +1287,22 @@ class Test_dashboardPage:
         continueBtn = self.presOfEltByXpath(xpath_continueBtn).click()
         errorMsgFirstName = self.presOfEltByXpath(xpath_errorMsgFirstName)
         if errorMsgFirstName is not None:
-            assert errorMsgFirstName.text == "Error: First Name is required"
+            try:
+                assert errorMsgFirstName.text == "Error: First Name is required"
+                ssName = saveSS(self.driver, 'test_firstNameFieldIsMandatory')
+                pytest.screenshot_name = ssName
+            except AssertionError as e:
+                ssName = saveSS(self.driver, 'test_firstNameFieldIsMandatory')
+                pytest.screenshot_name = ssName
+                raise
         else:
+            ssName = saveSS(self.driver, 'test_firstNameFieldIsMandatory')
+            pytest.screenshot_name = ssName
             pytest.fail("errorMsgFirstName not found")
 
     def test_lastNameFieldIsMandatory(self):
         title='Verify that the last name field is mandatory'
+        #pytest.title = title
         self.driver.refresh()
         sleep(2)
         firstNameField=self.presOfEltByXpath(xpath_firstNameField).send_keys('John')
@@ -1188,11 +1310,21 @@ class Test_dashboardPage:
         continueBtn = self.presOfEltByXpath(xpath_continueBtn).click()
         errorMsgLastName = self.presOfEltByXpath(xpath_errorMsgLastName)
         if errorMsgLastName is not None:
-            assert errorMsgLastName.text == "Error: Last Name is required"
+            try:
+                assert errorMsgLastName.text == "Error: Last Name is required"
+                ssName = saveSS(self.driver, 'test_lastNameFieldIsMandatory')
+                pytest.screenshot_name = ssName
+            except AssertionError as e:
+                ssName = saveSS(self.driver, 'test_lastNameFieldIsMandatory')
+                pytest.screenshot_name = ssName
+                raise
         else:
+            ssName = saveSS(self.driver, 'test_lastNameFieldIsMandatory')
+            pytest.screenshot_name = ssName
             pytest.fail("errorMsgLastName not found")
     def test_zipCodeFieldIsMandatory(self):
         title='Verify that the zip code field is mandatory'
+        #pytest.title = title
         self.driver.refresh()
         sleep(2)
         firstNameField=self.presOfEltByXpath(xpath_firstNameField).send_keys('John')
@@ -1200,12 +1332,22 @@ class Test_dashboardPage:
         continueBtn = self.presOfEltByXpath(xpath_continueBtn).click()
         errorMsgZipCodeField = self.presOfEltByXpath(xpath_errorMsgZipCodeField)
         if errorMsgZipCodeField is not None:
-            assert errorMsgZipCodeField.text == "Error: Postal Code is required"
+            try:
+                assert errorMsgZipCodeField.text == "Error: Postal Code is required"
+                ssName = saveSS(self.driver, 'test_zipCodeFieldIsMandatory')
+                pytest.screenshot_name = ssName
+            except AssertionError as e:
+                ssName = saveSS(self.driver, 'test_zipCodeFieldIsMandatory')
+                pytest.screenshot_name = ssName
+                raise
         else:
+            ssName = saveSS(self.driver, 'test_zipCodeFieldIsMandatory')
+            pytest.screenshot_name = ssName
             pytest.fail("errorMsgZipCodeField not found")
 
     def test_successfulClickOnContinueBtnNavigatesToCheckoutOverviewPage(self):
         title='Verify that a successful click on the continue button navigates to the checkout overview page'
+        #pytest.title = title
         self.driver.refresh()
         sleep(2)
         firstNameField = self.presOfEltByXpath(xpath_firstNameField).send_keys('John')
@@ -1214,8 +1356,17 @@ class Test_dashboardPage:
         continueBtn = self.presOfEltByXpath(xpath_continueBtn).click()
         pageTitle1=self.presOfEltByXpath(xpath_sectionHeading)
         if pageTitle1 is not None:
-            assert pageTitle1.text=="Checkout: Overview"
+            try:
+                assert pageTitle1.text=="Checkout: Overview"
+                ssName = saveSS(self.driver, 'test_successfulClickOnContinueBtnNavigatesToCheckoutOverviewPage')
+                pytest.screenshot_name = ssName
+            except AssertionError as e:
+                ssName = saveSS(self.driver, 'test_successfulClickOnContinueBtnNavigatesToCheckoutOverviewPage')
+                pytest.screenshot_name = ssName
+                raise
         else:
+            ssName = saveSS(self.driver, 'test_successfulClickOnContinueBtnNavigatesToCheckoutOverviewPage')
+            pytest.screenshot_name = ssName
             pytest.fail("Checkout Overview page not found")
 
 
